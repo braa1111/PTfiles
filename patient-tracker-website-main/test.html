@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        :root {
+            --primary-color: #2BACBF;
+            --primary-color-dark: #0d846c;
+            --primary-color-light: #e9f7f7;
+            --secondary-color-dark: #11856d;
+            --text-dark: #333333;
+            --text-light: #767268;
+            --white: #ffffff;
+            --max-width: 1200px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f0f2f5;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.737), rgba(1, 0, 0, 0.735)), url("head.jpg");
+            color: var(--white);
+            background-position: center;
+            background-size: cover;
+            padding: 2rem 0;
+        }
+
+        .nav__container {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav__logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .nav__logo span {
+            color: var(--primary-color);
+        }
+
+        .nav__links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .link a {
+            padding: 0.5rem;
+            color: var(--primary-color-light);
+            transition: color 0.3s;
+        }
+
+        .link a:hover {
+            color: var(--primary-color);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .notification .icon {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s;
+        }
+
+        .notification:hover {
+            color: var(--primary-color-dark);
+        }
+
+        .greeting {
+            color: var(--white);
+        }
+
+        .greeting h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .greeting p {
+            font-size: 0.75rem;
+        }
+
+        .profile-photo {
+            display: flex;
+            align-items: center;
+            padding: 7px 7px;
+            border-radius: 100%;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .profile-photo:hover {
+            background-color: var(--primary-color);
+        }
+
+        .patient-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .header__container {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+        }
+
+        .header__container h1 {
+            margin-bottom: 1rem;
+            max-width: 800px;
+            font-size: 3.5rem;
+            line-height: 4rem;
+            color: var(--white);
+        }
+
+        .header__container p {
+            margin-bottom: 2rem;
+            max-width: 600px;
+            color: var(--primary-color-light);
+        }
+
+        .notifications-section,
+        .recent-activity-section,
+        .circle-section {
+            background: #ffffff;
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            box-shadow: 4px 8px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .notifications-header,
+        .recent-activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .notifications-title,
+        .recent-activity-title {
+            font-size: 28px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .mark-all-read,
+        .see-all-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .mark-all-read:hover,
+        .see-all-link:hover {
+            color: var(--primary-color-dark);
+        }
+
+        .notification-list,
+        .activity-boxes {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .notification-item,
+        .activity-box {
+            background: var(--primary-color-light);
+            border: 2px solid var(--primary-color-light);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .notification-item:hover,
+        .activity-box:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .notification-item h4,
+        .activity-box h4 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .notification-item p,
+        .activity-box p {
+            font-size: 16px;
+            color: #555;
+            margin: 0;
+        }
+
+        .notification-item .timestamp,
+        .activity-box .timestamp {
+            font-size: 14px;
+            color: #888;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .section-paragraph {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .circle-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-size: 20px;
+            margin: 20px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .circle h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .description {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .circle:hover {
+            transform: scale(1.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background-color: rgba(56, 142, 60, 0.7);
+        }
+
+        .footer {
+            background-color: var(--primary-color-light);
+        }
+
+        .footer__container {
+            display: grid;
+            grid-template-columns: 400px repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer__col h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .footer__col h3 span {
+            color: var(--secondary-color-dark);
+        }
+
+        .footer__col h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .footer__col p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .footer__col a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .footer__col a:hover {
+            color: var(--primary-color-dark);
+            text-decoration: underline;
+        }
+
+        .footer__bottom {
+            background: #2bacbf;
+            padding: 1rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .footer__bottom p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .login-page {
+            display: none;
+        }
+
+        .home-page {
+            display: block;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .toggle-btn {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            margin: 20px;
+            transition: background 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: var(--primary-color-dark);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav__container">
+            <div class="nav__logo">Patient<span>Tracker</span></div>
+            <ul class="nav__links">
+                <li class="link"><a href="#" id="home-link">Home</a></li>
+                <li class="link"><a href="#" id="login-link">Login</a></li>
+            </ul>
+            <div class="profile">
+                <div class="notification">
+                    <i class="bi bi-bell"></i>
+                </div>
+                <div class="greeting">
+                    <h1>Hello, User!</h1>
+                    <p>Welcome back.</p>
+                </div>
+                <div class="profile-photo">
+                    <img src="profile.jpg" alt="Profile" class="patient-avatar">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <div class="home-page active" id="home-page">
+            <div class="header__container">
+                <h1>Your Patient Tracker</h1>
+                <p>Keep track of your patient’s details and health data with ease.</p>
+            </div>
+
+            <div class="circle-section">
+                <div class="circle" style="background-image: url('circle1.jpg');">
+                    <h3>Patient Management</h3>
+                    <p class="description">Manage and update patient information quickly and efficiently.</p>
+                </div>
+                <div class="circle" style="background-image: url('circle2.jpg');">
+                    <h3>Health Records</h3>
+                    <p class="description">Access and review comprehensive health records anytime.</p>
+                </div>
+                <div class="circle" style="background-image: url('circle3.jpg');">
+                    <h3>Appointment Scheduling</h3>
+                    <p class="description">Schedule and manage appointments with ease.</p>
+                </div>
+            </div>
+
+            <div class="notifications-section">
+                <div class="notifications-header">
+                    <h2 class="notifications-title">Latest Notifications</h2>
+                    <a href="#" class="mark-all-read">Mark All as Read</a>
+                </div>
+                <ul class="notification-list">
+                    <li class="notification-item">
+                        <h4>Appointment Reminder</h4>
+                        <p>Don't forget your appointment with Dr. Smith at 3 PM today.</p>
+                        <span class="timestamp">2 hours ago</span>
+                    </li>
+                    <li class="notification-item">
+                        <h4>New Message</h4>
+                        <p>You have received a new message from the hospital.</p>
+                        <span class="timestamp">1 day ago</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="recent-activity-section">
+                <div class="recent-activity-header">
+                    <h2 class="recent-activity-title">Recent Activity</h2>
+                    <a href="#" class="see-all-link">See All</a>
+                </div>
+                <div class="activity-boxes">
+                    <div class="activity-box">
+                        <h4>Patient Update</h4>
+                        <p>Updated the details for patient John Doe.</p>
+                        <span class="timestamp">3 hours ago</span>
+                    </div>
+                    <div class="activity-box">
+                        <h4>Appointment Booked</h4>
+                        <p>New appointment booked with Dr. Lee.</p>
+                        <span class="timestamp">5 hours ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div class="login-page" id="login-page">
+            <h1>Login</h1>
+            <form action="#">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__col">
+                <h3>About<span>Us</span></h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisl id ligula facilisis.</p>
+            </div>
+            <div class="footer__col">
+                <h4>Links</h4>
+                <a href="#">Privacy Policy</a><br>
+                <a href="#">Terms of Service</a><br>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer__col">
+                <h4>Contact</h4>
+                <p>Email: info@patienttracker.com</p>
+                <p>Phone: +1 234 567 890</p>
+            </div>
+            <div class="footer__col">
+                <h4>Follow Us</h4>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>&copy; 2024 Patient Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="toggle-btn" id="toggle-btn">Switch to Login</button>
+
+    <script>
+        const homeLink = document.getElementById('home-link');
+        const loginLink = document.getElementById('login-link');
+        const homePage = document.getElementById('home-page');
+        const loginPage = document.getElementById('login-page');
+        const toggleBtn = document.getElementById('toggle-btn');
+
+        homeLink.addEventListener('click', () => {
+            homePage.classList.add('active');
+            loginPage.classList.remove('active');
+            toggleBtn.textContent = 'Switch to Login';
+        });
+
+        loginLink.addEventListener('click', () => {
+            homePage.classList.remove('active');
+            loginPage.classList.add('active');
+            toggleBtn.textContent = 'Switch to Home';
+        });
+
+        toggleBtn.addEventListener('click', () => {
+            if (homePage.classList.contains('active')) {
+                homePage.classList.remove('active');
+                loginPage.classList.add('active');
+                toggleBtn.textContent = 'Switch to Home';
+            } else {
+                homePage.classList.add('active');
+                loginPage.classList.remove('active');
+                toggleBtn.textContent = 'Switch to Login';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+:root {
+    --primary-color: #2BACBF;
+    --primary-color-dark: #0d846c;
+    --primary-color-light: #e9f7f7;
+    --secondary-color-dark: #11856d;
+    --text-dark: #333333;
+    --text-light: #767268;
+    --white: #ffffff;
+    --max-width: 1200px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+header {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.737),
+        rgba(1, 0, 0, 0.735)
+      ),
+      url("assets/head.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+.top-left {
+    display: flex;
+    align-items: center;
+}
+
+.greeting {
+    font-size: 16px;
+    color: #fff;
+    margin: 0 0 5px 10px;
+}
+
+.status {
+    font-size: 12px;
+    color: #777;
+    margin: 0 0 0 10px;
+}
+
+.patient-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.notification .icon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 50px;
+}
+
+.settings .icon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 30px;
+}
+
+.search{
+    padding: 10px;
+    width: 300px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: var(--primary-color-light);
+    position: absolute;
+    top: 130px;
+    right: 120px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    position:relative;
+    right: 50px;
+    top: 40%;
+}
+
+.search .icon{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.main-text {
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 30px;
+}
+
+.appointment-box {
+    padding: 15px;
+    height: 15px;
+    background-color: var(--white);
+    color: var(--primary-color);
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    margin-top: 40px;
+}
+
+.section-title {
+    font-size: 24px;
+    color: #333;
+}
+
+.see-all {
+    font-size: 18px;
+    color: var(--primary-color);
+    text-decoration: none;
+    position: absolute;
+    top: 88%;
+    right: 110px;
+    border: #2BACBF solid 2px;
+    display: inline-block;
+    padding: 5px 30px;
+    border-radius: 10px;
+}
+
+.see-all :hover{
+    color: var(--white);
+    background-color: var(--primary-color);
+}
+.services-list {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 40px;
+}
+
+.service-item {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:var(--primary-color-light);
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.service-item i {
+    display: inline-block;
+    padding: 20px 20px;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--primary-color);
+    border-radius: 100%;
+    transition: 0.3s;
+}
+
+.service-label {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.service-item :hover{
+    color: var(--primary-color-dark);
+}
+
+.service-item i:hover{
+    color: var(--primary-color-light);
+    background-color: var(--primary-color);
+}
+
+.service-item label:hover{
+    color: var(--primary-color-dark);
+}
+
+.doctors__container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: var(--white);
+}
+
+.doctors__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+.doctors__header__content h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color-dark);
+}
+
+.doctors__nav span {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.doctors__nav span:hover {
+    color: var(--primary-color-dark);
+}
+
+.doctors__grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.doctors__card {
+    width: 20%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.doctors__card:hover {
+    transform: translateY(-5px);
+}
+
+.doctors__card__image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.doctors__card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.doctors__socials {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.doctors__socials span {
+    font-size: 20px;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.doctors__socials span:hover {
+    color: var(--primary-color-dark);
+}
+
+.doctors__card h4 {
+    font-size: 22px;
+    color: #333;
+    margin: 10px 0 5px 0;
+}
+
+.doctors__card p {
+    font-size: 16px;
+    color: #767268;
+    margin-bottom: 20px;
+}
+
